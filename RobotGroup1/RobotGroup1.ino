@@ -5,6 +5,11 @@
 #define IR_3 7
 #define IR_4 8
 
+#define MOTOR_PIN1 3
+#define MOTOR_PIN2 5
+#define MOTOR_PIN3 6
+#define MOTOR_PIN4 9
+
 #define COLOR_0 A0
 #define COLOR_1 A1
 #define COLOR_2 A2
@@ -19,6 +24,12 @@ void setup() {
   pinMode(IR_2, INPUT);
   pinMode(IR_3, INPUT);
   pinMode(IR_4, INPUT);
+
+  // Setup Motor Pins
+  pinMode(MOTOR_PIN1, OUTPUT);
+  pinMode(MOTOR_PIN2, OUTPUT);
+  pinMode(MOTOR_PIN3, OUTPUT);
+  pinMode(MOTOR_PIN4, OUTPUT);
 }
 
 void loop() {
