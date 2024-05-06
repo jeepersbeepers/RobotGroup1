@@ -18,6 +18,8 @@
 
 unsigned long irSensorMillis = 0;  // Timer to track the lsat report of the IR sensors
 
+unsigned long colorSensorMillis = 0;  //Timer to track the last report of the color sensors
+
 void setup() {
   // Setup Infrared Pins
   pinMode(IR_1, INPUT);
@@ -40,5 +42,11 @@ void loop() {
   if (currentMillis - irSensorsMillis >= 500) {
     irSensorMillis = currentMillis;
     readInfrared();
+  }
+
+  // Read the color sensor
+  if (currentMillis - colorSensorMillis >= 250) {
+    colorSensorMillis = currentMillis;
+    readColorSensor();
   }
 }
