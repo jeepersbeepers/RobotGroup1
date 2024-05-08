@@ -16,11 +16,16 @@
 #define COLOR_3 A3
 #define COLOR_OUT A4
 
+#define TRIGPIN 10
+#define ECHOPIN 11
+
 unsigned long irSensorMillis = 0;  // Timer to track the lsat report of the IR sensors
 
 unsigned long colorSensorMillis = 0;  //Timer to track the last report of the color sensors
 
 void setup() {
+  Serial.begin(115200);
+
   // Setup Infrared Pins
   pinMode(IR_1, INPUT);
   pinMode(IR_2, INPUT);
@@ -32,6 +37,10 @@ void setup() {
   pinMode(MOTOR_PIN2, OUTPUT);
   pinMode(MOTOR_PIN3, OUTPUT);
   pinMode(MOTOR_PIN4, OUTPUT);
+
+  // Setup Ultrasonic Sensor Pins
+  pinMode(TRIGPIN, OUTPUT);
+  pinMode(ECHOPIN, INPUT);
 }
 
 void loop() {
@@ -51,7 +60,7 @@ void loop() {
   }
 
   // Test motor control by creating a routine that moves
-  // The robot forward for 1 second and then turns 90 degrees rigHT.
+  // The robot forward for 1 second and then turns 90 degrees right.
   // You will have to adjust the delay after the turn to make it a perfect square.
   motorControl(255, 255); // Go straight forward
   delay(1000);
