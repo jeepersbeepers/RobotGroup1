@@ -39,7 +39,7 @@ void loop() {
   unsigned long currentMillis = millis();
 
   // Check the states of the IR sensors every 500ms
-  if (currentMillis - irSensorsMillis >= 500) {
+  if (currentMillis - irSensorMillis >= 500) {
     irSensorMillis = currentMillis;
     readInfrared();
   }
@@ -49,4 +49,17 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
+
+  // Test motor control by creating a routine that moves
+  // The robot forward for 1 second and then turns 90 degrees rigHT.
+  // You will have to adjust the delay after the turn to make it a perfect square.
+  motorControl(255, 255); // Go straight forward
+  delay(1000);
+  motorControl(0,0); // Stop momentarily
+  delay(100);
+  motorControl(255, -255); // Turn to the Right
+  delay(500);
+  motorControl(0, 0); // Stop momentarily
+  delay(100);
+
 }
