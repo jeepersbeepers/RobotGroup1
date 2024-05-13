@@ -19,7 +19,7 @@
 #define TRIGPIN 10
 #define ECHOPIN 11
 
-unsigned long irSensorMillis = 0;  // Timer to track the lsat report of the IR sensors
+unsigned long irSensorMillis = 0;  // Timer to track the last report of the IR sensors
 
 unsigned long colorSensorMillis = 0;  //Timer to track the last report of the color sensors
 
@@ -44,6 +44,9 @@ void setup() {
 }
 
 void loop() {
+  // Run the robot Logic
+  robotLogic();
+
   // Get the current run time in milliseconds
   unsigned long currentMillis = millis();
 
