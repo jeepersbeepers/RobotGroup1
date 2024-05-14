@@ -1,5 +1,7 @@
 #include <tcs3200.h>
 
+String currentState = "Null";
+
 #define IR_1 2
 #define IR_2 4
 #define IR_3 7
