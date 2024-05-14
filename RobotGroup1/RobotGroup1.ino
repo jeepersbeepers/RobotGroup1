@@ -49,6 +49,10 @@ void loop() {
   // Run the robot Logic
   robotLogic();
 
+  // Ultrasonic sensor running
+  ultrasonicSensor();
+  delay(500);
+  
   // Get the current run time in milliseconds
   unsigned long currentMillis = millis();
 
