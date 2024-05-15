@@ -9,13 +9,16 @@ void motorLogic() {  // The logic to tell the motors how to operate
   IRvalues = readInfrared();  // Read the current state of the IR sensors
 
   if (IRvalues[1] == 1 && IRvalues[2] == 1) {
+    Serial.print("Robot forward");
     motorControl(200, 200);  // Move the robot forward
     currentState = "Forward";
   } else if (IRvalues[1] == 0 && IRvalues[2] == 1) {
+    Serial.print("Slight left");
     motorControl(150, 200);  // Turn slight left
     currentState = "Left";
   } else if (IRvalues[1] == 1 && IRvalues[2] == 0) {
-    motorControl(200,150);  //Turn slight right
+    Serial.print("Slight right");
+    motorControl(200, 150);  //Turn slight right
     currentState = "Right";
   } else if (IRvalues[0] == 1 && IRvalues[1] == 1 && IRvalues[2] == 1 && IRvalues[3] == 1) {
     // If none of the IR sensors detect a line, continue the last state detected by the center IR sensors

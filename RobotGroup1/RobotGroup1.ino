@@ -2,10 +2,10 @@
 
 String currentState = "Null";
 
-#define IR_1 2
-#define IR_2 4
-#define IR_3 7
-#define IR_4 8
+#define IR_1 4
+#define IR_2 7
+#define IR_3 8
+#define IR_4 12
 
 #define MOTOR_PIN1 3
 #define MOTOR_PIN2 5
@@ -71,13 +71,13 @@ void loop() {
   // Test motor control by creating a routine that moves
   // The robot forward for 1 second and then turns 90 degrees right.
   // You will have to adjust the delay after the turn to make it a perfect square.
-  motorControl(255, 255); // Go straight forward
-  delay(1000);
-  motorControl(0,0); // Stop momentarily
-  delay(100);
-  motorControl(255, -255); // Turn to the Right
-  delay(500);
-  motorControl(0, 0); // Stop momentarily
-  delay(100);
+  // motorControl(255, 255); // Go straight forward
+  // delay(1000);
+  // motorControl(0,0); // Stop momentarily
+  // delay(100);
+  // motorControl(255, -255); // Turn to the Right
+  // delay(500);
+  // motorControl(0, 0); // Stop momentarily
+  // delay(100);
 
 }
