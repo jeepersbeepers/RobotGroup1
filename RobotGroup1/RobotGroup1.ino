@@ -1,6 +1,8 @@
 #include <tcs3200.h>
 
+// State Logic
 String currentState = "Null";
+String oldCurrentState = "Null";
 
 #define IR_1 4
 #define IR_2 7
@@ -21,9 +23,18 @@ String currentState = "Null";
 #define TRIGPIN 10
 #define ECHOPIN 11
 
+long currentDistance = 0;
+
 unsigned long irSensorMillis = 0;  // Timer to track the last report of the IR sensors
 
+unsigned long currentMillis;
 unsigned long colorSensorMillis = 0;  //Timer to track the last report of the color sensors
+
+// Turning Logic
+String turnDirection = "";      // Keep track of the current turn direction.
+String lastTurnDirection = "";  // Store the last turn direction to decide the next turn if sharp turn is detected.
+bool isTurning = false;         // Flag to show if the robot is turning or not.
+bool wallDetected = false;      //  Flag to show if the robot has detected a wall with the ultrasonic sensor
 
 void setup() {
   Serial.begin(115200);
@@ -50,11 +61,11 @@ void loop() {
   robotLogic();
 
   // Ultrasonic sensor running
-  ultrasonicSensor();
+  readUltrasonicSensor();
   delay(500);
-  
+
   // Get the current run time in milliseconds
-  unsigned long currentMillis = millis();
+  currentMillis = millis();
 
   // Check the states of the IR sensors every 500ms
   if (currentMillis - irSensorMillis >= 500) {
@@ -79,5 +90,4 @@ void loop() {
   // delay(500);
   // motorControl(0, 0); // Stop momentarily
   // delay(100);
-
 }
