@@ -72,7 +72,6 @@ void loop() {
 
   // Ultrasonic sensor running
   readUltrasonicSensor();
-  delay(500);
 
   // Get the current run time in milliseconds
   currentMillis = millis();
@@ -94,15 +93,4 @@ void loop() {
   WiFiDrv::analogWrite(26, 255);  //RED
   WiFiDrv::analogWrite(27, 255);  //BLUE
 
-  // Test motor control by creating a routine that moves
-  // The robot forward for 1 second and then turns 90 degrees right.
-  // You will have to adjust the delay after the turn to make it a perfect square.
-  // motorControl(255, 255); // Go straight forward
-  // delay(1000);
-  // motorControl(0,0); // Stop momentarily
-  // delay(100);
-  // motorControl(255, -255); // Turn to the Right
-  // delay(500);
-  // motorControl(0, 0); // Stop momentarily
-  // delay(100);
 }
