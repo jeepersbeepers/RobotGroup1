@@ -23,6 +23,10 @@ String oldCurrentState = "Null";
 #define TRIGPIN 10
 #define ECHOPIN 11
 
+#define LED_R 25
+#define LED_G 26
+#define LED_B 27
+
 long currentDistance = 0;
 
 unsigned long irSensorMillis = 0;  // Timer to track the last report of the IR sensors
@@ -35,6 +39,10 @@ String turnDirection = "";      // Keep track of the current turn direction.
 String lastTurnDirection = "";  // Store the last turn direction to decide the next turn if sharp turn is detected.
 bool isTurning = false;         // Flag to show if the robot is turning or not.
 bool wallDetected = false;      //  Flag to show if the robot has detected a wall with the ultrasonic sensor
+
+WiFiDrv::analogWrite(25, 255);  //GREEN
+WiFiDrv::analogWrite(26, 255);  //RED
+WiFiDrv::analogWrite(27, 255);  //BLUE
 
 void setup() {
   Serial.begin(115200);
@@ -54,6 +62,11 @@ void setup() {
   // Setup Ultrasonic Sensor Pins
   pinMode(TRIGPIN, OUTPUT);
   pinMode(ECHOPIN, INPUT);
+
+  // Setup onboard RGB LED pins
+  WiFiDrv::pinMode(LED_R, OUTPUT);  // define GREEN LED
+  WiFiDrv::pinMode(LED_G, OUTPUT);  // define RED LED
+  WiFiDrv::pinMode(LED_B, OUTPUT);  // define BLUE LED
 }
 
 void loop() {
