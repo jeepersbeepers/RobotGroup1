@@ -1,4 +1,5 @@
 #include <tcs3200.h>
+#include <WiFiNINA.h>
 
 // State Logic
 String currentState = "Null";
@@ -20,8 +21,8 @@ String oldCurrentState = "Null";
 #define COLOR_3 A3
 #define COLOR_OUT A4
 
-#define TRIGPIN 10
-#define ECHOPIN 11
+#define TRIG_PIN 10
+#define ECHO_PIN 11
 
 #define LED_R 25
 #define LED_G 26
@@ -40,10 +41,6 @@ String lastTurnDirection = "";  // Store the last turn direction to decide the n
 bool isTurning = false;         // Flag to show if the robot is turning or not.
 bool wallDetected = false;      //  Flag to show if the robot has detected a wall with the ultrasonic sensor
 
-WiFiDrv::analogWrite(25, 255);  //GREEN
-WiFiDrv::analogWrite(26, 255);  //RED
-WiFiDrv::analogWrite(27, 255);  //BLUE
-
 void setup() {
   Serial.begin(115200);
 
@@ -60,10 +57,10 @@ void setup() {
   pinMode(MOTOR_PIN4, OUTPUT);
 
   // Setup Ultrasonic Sensor Pins
-  pinMode(TRIGPIN, OUTPUT);
-  pinMode(ECHOPIN, INPUT);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
 
-  // Setup onboard RGB LED pins
+  // Setup WifiDRV
   WiFiDrv::pinMode(LED_R, OUTPUT);  // define GREEN LED
   WiFiDrv::pinMode(LED_G, OUTPUT);  // define RED LED
   WiFiDrv::pinMode(LED_B, OUTPUT);  // define BLUE LED
@@ -91,6 +88,11 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
+
+  // Setup onboard RGB LED pins
+  WiFiDrv::analogWrite(25, 255);  //GREEN
+  WiFiDrv::analogWrite(26, 255);  //RED
+  WiFiDrv::analogWrite(27, 255);  //BLUE
 
   // Test motor control by creating a routine that moves
   // The robot forward for 1 second and then turns 90 degrees right.

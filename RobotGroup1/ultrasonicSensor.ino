@@ -1,11 +1,11 @@
 int readUltrasonicSensor() {
-  digitalWrite(TRIGPIN, LOW);
+  digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
-  digitalWrite(TRIGPIN, HIGH);
+  digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TRIGPIN, LOW);
+  digitalWrite(TRIG_PIN, LOW);
 
-  long duration = pulseIn(ECHOPIN, HIGH);
+  long duration = pulseIn(ECHO_PIN, HIGH);
 
   // Calculate distance in centimeters
   int distance = duration * 0.034 / 2;
