@@ -43,10 +43,11 @@ void detectColor(int targetRed, int targetGreen, int targetBlue, int redThreshol
       Serial.println("Color Detected: Green");
     } else if (targetBlue > targetRed && targetBlue > targetGreen) {
       Serial.println("Color Detected: Blue");
-    } else {
+    } else if (targetRed > targetGreen && targetGreen > targetBlue) {
       Serial.println("Color Detected: Yellow");
     }
-  } else {
-    Serial.println("Color Not Detected");
-  }
+   } 
+  // else {
+  //   Serial.println("Color Not Detected");
+  // }
 }

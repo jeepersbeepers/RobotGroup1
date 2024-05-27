@@ -64,6 +64,9 @@ void setup() {
   WiFiDrv::pinMode(LED_R, OUTPUT);  // define GREEN LED
   WiFiDrv::pinMode(LED_G, OUTPUT);  // define RED LED
   WiFiDrv::pinMode(LED_B, OUTPUT);  // define BLUE LED
+
+  // Builtin Pin
+  pinMode(LED_BUILTIN, OUTPUT);  // Initialize Builtin LED
 }
 
 void loop() {
@@ -75,9 +78,9 @@ void loop() {
 
   // Call the detectColor function for Red, Green, Blue, and Yellow
   detectColor(28, 8, 11, 3, 3, 3);    // Detect Red
-  // detectColor(0, 33, 0, 3, 3, 3);    // Detect Green
-  // detectColor(0, 0, 33, 3, 3, 3);    // Detect Blue
-  // detectColor(33, 33, 0, 3, 3, 3);  // Detect Yellow
+  detectColor(21, 33, 25, 3, 3, 4);    // Detect Green
+  detectColor(8, 10, 31, 3, 3, 3);    // Detect Blue
+  // detectColor(54, 32, 19, 5, 3, 3);  // Detect Yellow
 
   // Get the current run time in milliseconds
   currentMillis = millis();
