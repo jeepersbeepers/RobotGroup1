@@ -56,19 +56,19 @@ void detectColor(int targetRed, int targetGreen, int targetBlue, int redThreshol
     }
   } 
 
-  if (LEDcolor = "Red") {
+  if (LEDcolor == "Red") {
     WiFiDrv::analogWrite(25, 0);  //GREEN
     WiFiDrv::analogWrite(26, 255);  //RED
     WiFiDrv::analogWrite(27, 0);  //BLUE
-  } else if (LEDcolor = "Green") {
+  } else if (LEDcolor == "Green") {
     WiFiDrv::analogWrite(25, 255);  //GREEN
     WiFiDrv::analogWrite(26, 0);  //RED
     WiFiDrv::analogWrite(27, 0);  //BLUE
-  } else if (LEDcolor = "Blue") {
+  } else if (LEDcolor == "Blue") {
     WiFiDrv::analogWrite(25, 0);  //GREEN
     WiFiDrv::analogWrite(26, 0);  //RED
     WiFiDrv::analogWrite(27, 255);  //BLUE
-  } else if (LEDcolor = "Yellow") {
+  } else if (LEDcolor == "Yellow") {
     WiFiDrv::analogWrite(25, 255);  //GREEN
     WiFiDrv::analogWrite(26, 255);  //RED
     WiFiDrv::analogWrite(27, 0);  //BLUE
