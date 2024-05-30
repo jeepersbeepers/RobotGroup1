@@ -116,7 +116,7 @@ void motorLogic() {  // The logic to tell the motors how to operate
       }
     }
     // Handle the turning based on the direction determined
-  } else if (isTurning && !wallDetected) {
+  }  else if (isTurning && !wallDetected) {
     if (initialForwardMotion) {
       motorControl(200, 200);  // Continue moving forward for the initial duration
       currentState = "Bumping Out...";
