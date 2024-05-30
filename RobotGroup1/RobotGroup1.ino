@@ -42,7 +42,7 @@ bool isTurning = false;         // Flag to show if the robot is turning or not.
 bool wallDetected = false;      //  Flag to show if the robot has detected a wall with the ultrasonic sensor
 
 void setup() {
-  Serial.begin(74880);
+  Serial.begin(250000);
 
   // Setup Infrared Pins
   pinMode(IR_1, INPUT);
@@ -77,10 +77,10 @@ void loop() {
   readUltrasonicSensor();
 
   // Call the detectColor function for Red, Green, Blue, and Yellow
-  detectColor(28, 8, 11, 3, 3, 3);    // Detect Red
-  detectColor(21, 33, 25, 3, 3, 4);    // Detect Green
-  detectColor(8, 10, 31, 3, 3, 3);    // Detect Blue
-  // detectColor(54, 32, 19, 5, 3, 3);  // Detect Yellow
+  detectColor(36, 10, 14, 3, 3, 3);    // Detect Red 36 10 14
+  detectColor(20, 36, 26, 3, 3, 3);    // Detect Green 20 36 26
+  detectColor(9, 14, 32, 3, 3, 3);    // Detect Blue 9 14 32
+  detectColor(58, 40, 23, 10, 2, 4);  // Detect Yellow 60 40 23
 
   // Get the current run time in milliseconds
   currentMillis = millis();
@@ -96,10 +96,4 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
-
-  // Setup onboard RGB LED pins
-  WiFiDrv::analogWrite(25, 255);  //GREEN
-  WiFiDrv::analogWrite(26, 255);  //RED
-  WiFiDrv::analogWrite(27, 255);  //BLUE
-
 }

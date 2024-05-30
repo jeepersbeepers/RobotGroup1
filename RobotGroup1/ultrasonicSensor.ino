@@ -10,9 +10,9 @@ int readUltrasonicSensor() {
   // Calculate distance in centimeters
   int distance = duration * 0.034 / 2;
 
-  // Serial.print("Distance: ");
-  // Serial.print(distance);
-  // Serial.println(" cm");
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
 
   currentDistance = distance;
 }

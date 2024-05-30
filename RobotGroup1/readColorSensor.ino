@@ -5,6 +5,8 @@ int avgGreen = 0;
 int avgBlue = 0;
 int avgWhite = 0;
 
+String LEDcolor = "Empty";
+
 void readColorSensor() {
   const int samples = 5;
   long sumRed = 0, sumGreen = 0, sumBlue = 0, sumWhite = 0;
@@ -29,7 +31,7 @@ void readColorSensor() {
   Serial.print(" B= ");
   Serial.print(avgBlue);
   Serial.print(" W(clear)= ");
-  Serial.print(avgWhite);
+  Serial.println(avgWhite);
 }
 
 void detectColor(int targetRed, int targetGreen, int targetBlue, int redThreshold, int greenThreshold, int blueThreshold) {
@@ -39,15 +41,40 @@ void detectColor(int targetRed, int targetGreen, int targetBlue, int redThreshol
     // Determine the detected color based on the target RGB values and print the result
     if (targetRed > targetGreen && targetRed > targetBlue) {
       Serial.println("Color Detected: Red");
+      LEDcolor = "Red";
     } else if (targetGreen > targetRed && targetGreen > targetBlue) {
       Serial.println("Color Detected: Green");
+      LEDcolor = "Green";
     } else if (targetBlue > targetRed && targetBlue > targetGreen) {
       Serial.println("Color Detected: Blue");
-    } else if (targetRed > targetGreen && targetGreen > targetBlue) {
+      LEDcolor = "Blue";
+    } else if (targetRed > targetGreen && targetGreen > targetBlue && targetRed > targetBlue) {
       Serial.println("Color Detected: Yellow");
+      LEDcolor = "Yellow";
+    } else {
+      Serial.println("Color Not Detected");
     }
-   } 
-  // else {
-  //   Serial.println("Color Not Detected");
-  // }
+  } 
+
+  if (LEDcolor = "Red") {
+    WiFiDrv::analogWrite(25, 0);  //GREEN
+    WiFiDrv::analogWrite(26, 255);  //RED
+    WiFiDrv::analogWrite(27, 0);  //BLUE
+  } else if (LEDcolor = "Green") {
+    WiFiDrv::analogWrite(25, 255);  //GREEN
+    WiFiDrv::analogWrite(26, 0);  //RED
+    WiFiDrv::analogWrite(27, 0);  //BLUE
+  } else if (LEDcolor = "Blue") {
+    WiFiDrv::analogWrite(25, 0);  //GREEN
+    WiFiDrv::analogWrite(26, 0);  //RED
+    WiFiDrv::analogWrite(27, 255);  //BLUE
+  } else if (LEDcolor = "Yellow") {
+    WiFiDrv::analogWrite(25, 255);  //GREEN
+    WiFiDrv::analogWrite(26, 255);  //RED
+    WiFiDrv::analogWrite(27, 0);  //BLUE
+  } else {
+    WiFiDrv::analogWrite(25, 255);  //GREEN
+    WiFiDrv::analogWrite(26, 255);  //RED
+    WiFiDrv::analogWrite(27, 255);  //BLUE
+  }
 }
