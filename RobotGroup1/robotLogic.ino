@@ -1,5 +1,5 @@
 bool initialForwardMotion = false;                // Flag to initiate forward motion at the start of a turn
-const unsigned long initialMotionDuration = 350;  // Duration for initial forward motion in milliseconds
+const unsigned long initialMotionDuration = 275;  // Duration for initial forward motion in milliseconds
 
 unsigned long turnStartTime = 0;                //Time when the turn starts
 const unsigned long initialTurnDuration = 600;  // Duration for initial turn when wall detected before IR sensor activates
@@ -116,7 +116,7 @@ void motorLogic() {  // The logic to tell the motors how to operate
       }
     }
     // Handle the turning based on the direction determined
-  }  else if (isTurning && !wallDetected) {
+  } else if (isTurning && !wallDetected) {
     if (initialForwardMotion) {
       motorControl(200, 200);  // Continue moving forward for the initial duration
       currentState = "Bumping Out...";
@@ -124,7 +124,7 @@ void motorLogic() {  // The logic to tell the motors how to operate
       initialForwardMotion = false;  // End initial forward motion after duration
     } else {
       if (turnDirection == "left") {
-        if (currentMillis - turnStartTime >= initialTurnDuration && IRvalues[2] == 1) {
+        if (currentMillis - turnStartTime >= initialTurnDuration + 200 && IRvalues[2] == 1) {
           Serial.println("Detected Center IR Sensor after initial turn duration");
           isTurning = false;   // Stop turning if IR2 detects the line again
           motorControl(0, 0);  // Adjust to move forward or stop
@@ -155,7 +155,7 @@ void motorLogic() {  // The logic to tell the motors how to operate
         }
       }
     }
-    
+
     // Turn that is triggered by detecting a wall
 
   } else if (isTurning && wallDetected) {
@@ -177,7 +177,7 @@ void motorLogic() {  // The logic to tell the motors how to operate
         wallDetected = false;
         currentState = "Forward";
       } else {
-        motorControl(-turnSpeed, turnSpeed);  // Continue turning left
+        motorControl(-turnSpeed - 20, turnSpeed);  // Continue turning left
         currentState = "Turning Left - No Line Yet Detected";
       }
     }

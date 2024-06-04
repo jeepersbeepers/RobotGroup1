@@ -77,8 +77,8 @@ void loop() {
   readUltrasonicSensor();
 
   // Call the detectColor function for Red, Green, Blue, and Yellow
-  detectColor(36, 10, 14, 3, 3, 3);    // Detect Red 36 10 14
-  detectColor(20, 36, 26, 3, 3, 3);    // Detect Green 20 36 26
+  detectColor(36, 10, 14, 3, 3, 3);   // Detect Red 36 10 14
+  detectColor(20, 36, 26, 3, 3, 3);   // Detect Green 20 36 26
   detectColor(9, 14, 32, 3, 3, 3);    // Detect Blue 9 14 32
   detectColor(58, 40, 23, 10, 2, 4);  // Detect Yellow 60 40 23
 
@@ -86,13 +86,13 @@ void loop() {
   currentMillis = millis();
 
   // Check the states of the IR sensors every 500ms
-  if (currentMillis - irSensorMillis >= 500) {
-    irSensorMillis = currentMillis;
-    readInfrared();
-  }
+  // if (currentMillis - irSensorMillis >= 100) {
+  //   irSensorMillis = currentMillis;
+  //   readInfrared();
+  // }
 
   // Read the color sensor
-  if (currentMillis - colorSensorMillis >= 250) {
+  if (currentMillis - colorSensorMillis >= 20) {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
